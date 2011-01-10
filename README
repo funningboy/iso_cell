@@ -1,0 +1,13 @@
+#
+# Isolation Cell Insertion for Low Power Design
+#
+
+# to run example 1
+make example_1
+
+# to run example 2
+make example_2
+
+# clear all
+make clean
+
