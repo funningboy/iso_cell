@@ -23,6 +23,7 @@ sub new {
                    deep_list_from => [],
                    deep_list_to   => [],
                    power_domain_list=>{},
+                   tmp_inst         => (),
                 };
      bless $self, $class;
      return $self;
@@ -585,6 +586,11 @@ sub set_deep_list_by_from {
   }
 }
 
+sub set_deep_list_module {    
+    my ($self,$top,$inst) = (@_);  
+    $self->{tmp_inst} = $inst;
+}
+
 #=================================
 # @ find the deepest module && push
 # @ input  I5/I6/I7
@@ -606,13 +612,14 @@ sub find_deep_list_module {
        my $module = $cell->{cell_module};
        my $link   = $cell->{cell_link};
        
-       if( $inst =~ /$name/ ){
+       if( $self->{tmp_inst} =~ /$name/ ){
            $self->push_deep_module_stack( { top_name    => $top,
                                             cell_name   => $name,
                                             cell_module => $module,
                                             cell_link   => $link,
                                             cell_id     => $cell_id,} );
            $self->push_top_down_stack($name);
+           $self->{tmp_inst} =~ s/^(\w+)\///g;
            $self->find_deep_list_module($module,$inst);
            $self->pop_top_down_stack();
        }
@@ -641,7 +648,7 @@ sub free_tmp {
 
     $self->{top_down_stack}    = [];
     $self->{deep_module_stack} = [];
-
+    $self->{tmp_inst}          = ();
 }
 
 sub get_debug {
@@ -662,6 +669,7 @@ sub free_all {
     $self->{deep_list_from}    = [];
     $self->{deep_list_to}      = [];
     $self->{power_domain_list} = {}; 
+    $self->{tmp_inst}          = ();
 }
 
 1;

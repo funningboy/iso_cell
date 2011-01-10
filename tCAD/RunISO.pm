@@ -63,10 +63,12 @@ sub runISO_INI {
  
                      print "  ".'@from->to:: '.$power_from.'->'.$power_to."\n"; 
 
+                       $self->{util}->set_deep_list_module($top,$power_from);
                        $self->{util}->find_deep_list_module($top,$power_from);
                        $self->{util}->set_deep_list_by_from();
                        $self->{util}->free_tmp();
                    
+                       $self->{util}->set_deep_list_module($top,$power_to);
                        $self->{util}->find_deep_list_module($top,$power_to);
                        $self->{util}->set_deep_list_by_to();
                        $self->{util}->free_tmp(); 
