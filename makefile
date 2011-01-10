@@ -11,9 +11,9 @@ example_1 :
 
 
 example_2 :
-	perl main.pl -design            ./example/in_1/top_2.v   \
-		     -power_intent      ./example/in_1/power_2.p \
-		     -library           ./example/in_1/lib_2.v   \
+	perl main.pl -design            ./example/in_2/top_2.v   \
+		     -power_intent      ./example/in_2/power_2.p \
+		     -library           ./example/in_2/lib_2.v   \
 		     -output_design     rst_2.v                  \
 		     -domain_map        rpt_2.r                  \
 		     -top_design_name   TOP
