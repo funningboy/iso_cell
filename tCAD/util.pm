@@ -264,7 +264,7 @@ sub check_top_down_list {
    my $top_dwn_list =  $self->{top_down_list};
   
    foreach my $lt (@{$top_dwn_list}){
-      if( $lt=~ /$name/ ){ return 0; } 
+      if( $lt=~ /^$name/ ){ return 0; } 
    }  
 return -1; 
 }
@@ -276,7 +276,7 @@ sub check_power_domain_list {
    my $tmp_st = [];
 
    foreach my $lt (@{$top_dwn_list}){
-      if( $lt=~ /$name/ ){  push ( @{$tmp_st}, $lt); } 
+      if( $lt=~ /^$name/ ){  push ( @{$tmp_st}, $lt); } 
    }  
 return $tmp_st; 
 }
