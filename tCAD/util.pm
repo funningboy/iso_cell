@@ -606,7 +606,7 @@ sub find_deep_list_module {
        my $module = $cell->{cell_module};
        my $link   = $cell->{cell_link};
        
-       if( $inst =~ /$name/ ){
+       if( $inst =~ /^$name/ ){
            $self->push_deep_module_stack( { top_name    => $top,
                                             cell_name   => $name,
                                             cell_module => $module,
